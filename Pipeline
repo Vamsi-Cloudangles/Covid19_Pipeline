@@ -24,7 +24,7 @@ pipeline{
         }
         stage("data preprocessing"){
             steps{
-                sh 'python3 data_preprocessing.py'
+                sh 'python3 data_cleaning.py'
             }
         }
         stage("data visualization"){
