@@ -44,9 +44,9 @@ pipeline{
         }
         
     }
-    post{
-        always{
-            emailext body:"summery", subject: "Pipeline Status", to: 'vamsi.muramreddy@cloudangles.com'
+   post{
+       
+        always {
+            archiveArtifacts artifacts: 'cleaned.csv', onlyIfSuccessful: true
         }
-    }
 }
