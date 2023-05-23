@@ -36,7 +36,7 @@ pipeline{
                 sh 'python3 feature_engineering.py'
             }
         }
-        stage("feature engineering"){
+        stage("feature selection"){
             steps{
                 sh 'python3 feature_selection.py'
             }
