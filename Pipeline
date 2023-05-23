@@ -14,34 +14,39 @@ pipeline{
         }
         stage("load data"){
             steps{
-                sh 'python3 loaddata.py'
+                sh 'python3 load_data.py'
             }
         }
         stage("data analysis"){
             steps{
-                sh 'python3 dataanalysis.py'
+                sh 'python3 data_analysis.py'
             }
         }
         stage("data preprocessing"){
             steps{
-                sh 'python3 datapreprocessing.py'
+                sh 'python3 data_cleaning.py'
             }
         }
         stage("data visualization"){
             steps{
-                sh 'python3 datavisualization.py'
+                sh 'python3 data_visualization.py'
             }
         }
         stage("feature engineering"){
             steps{
-                sh 'python3 featureengineering.py'
+                sh 'python3 feature_engineering.py'
+            }
+        }
+        stage("feature engineering"){
+            steps{
+                sh 'python3 feature_selection.py'
             }
         }
     }
     post{
        
         always {
-            archiveArtifacts artifacts: 'Bigmart_Sales_cleaned_dataset.csv', onlyIfSuccessful: true
+            archiveArtifacts artifacts: 'cleaned_dataset.csv', onlyIfSuccessful: true
         }
             }
 }
