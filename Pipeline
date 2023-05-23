@@ -4,49 +4,44 @@ pipeline{
     stages{
         stage("Checkout"){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vamsi-Cloudangles/Covid19_Pipeline.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vamsi-Cloudangles/BigMart-Pipeline.git']]])
             }
         }
         stage("build"){
             steps{
-                git branch: 'main', url: 'https://github.com/Vamsi-Cloudangles/Covid19_Pipeline.git'
+                git branch: 'main', url: 'https://github.com/Vamsi-Cloudangles/BigMart-Pipeline.git'
             }
         }
         stage("load data"){
             steps{
-                sh 'python3 load_data.py'
+                sh 'python3 loaddata.py'
             }
         }
         stage("data analysis"){
             steps{
-                sh 'python3 data_analysis.py'
+                sh 'python3 dataanalysis.py'
             }
         }
         stage("data preprocessing"){
             steps{
-                sh 'python3 data_cleaning.py'
+                sh 'python3 datapreprocessing.py'
             }
         }
         stage("data visualization"){
             steps{
-                sh 'python3 data_visualization.py'
+                sh 'python3 datavisualization.py'
             }
         }
         stage("feature engineering"){
             steps{
-                sh 'python3 feature_engineering.py'
-            }
-        }
-        stage("feature selection"){
-            steps{
-                sh 'python3 feature_selection.py'
+                sh 'python3 featureengineering.py'
             }
         }
     }
     post{
        
         always {
-            archiveArtifacts artifacts: 'cleaned.csv', onlyIfSuccessful: true
+            archiveArtifacts artifacts: 'Bigmart_Sales_cleaned_dataset.csv', onlyIfSuccessful: true
         }
-    }
+            }
 }
