@@ -44,7 +44,7 @@ pipeline{
     }
     post{   
         always {
-            archiveArtifacts artifacts: 'cleaned_dataset.csv', onlyIfSuccessful: true
+            archiveArtifacts artifacts: 'covid_cleaned_dataset.csv', onlyIfSuccessful: true
         }
             }
 }
