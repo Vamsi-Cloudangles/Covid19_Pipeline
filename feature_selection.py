@@ -1,5 +1,5 @@
 from feature_engineering import feature_engineering
-
+import pandas as pd
 def feature_selection():
     dataset = feature_engineering()
     # Drop the unnecesssary columns
