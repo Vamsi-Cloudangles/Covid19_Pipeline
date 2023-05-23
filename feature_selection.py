@@ -6,7 +6,7 @@ def feature_selection():
     print(dataset.head())
     dataset.drop(["SEX","PREGNANT","COPD","ASTHMA","INMSUPR","OTHER_DISEASE","CARDIOVASCULAR","OBESITY","TOBACCO"], axis=1, inplace=True)
     print(dataset)
-    dataset.to_csv("cleaned.csv", index = False)
+    dataset.to_csv("cleaned_dataset.csv", index = False)
     return dataset
 
 
