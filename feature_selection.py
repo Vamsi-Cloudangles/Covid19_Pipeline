@@ -9,6 +9,8 @@ def feature_selection():
     dataset.to_csv("cleaned_dataset.csv", index = False)
     return dataset
 
+print(feature_selection())
+
 
 
 
