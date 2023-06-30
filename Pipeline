@@ -1,52 +1,47 @@
 pipeline{
     agent any
-
     stages{
-        stage("Checkout"){
+        stage("requirements"){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vamsi-Cloudangles/MLANGLES-JENKINS.git']]])
+                sh 'pip install -r requirements.txt'
             }
         }
-        stage("build"){
-            steps{
-                git branch: 'main', url: 'https://github.com/Vamsi-Cloudangles/MLANGLES-JENKINS.git'
-            }
-        }
-        stage("load data"){
+        stage("Extract Data"){
             steps{
                 sh 'python3 load_data.py'
             }
         }
-        stage("data analysis"){
+        stage("Data Analysis"){
             steps{
                 sh 'python3 data_analysis.py'
             }
         }
-        stage("data cleaning"){
+        stage("Data Preprocessing"){
             steps{
                 sh 'python3 data_cleaning.py'
             }
         }
-        stage("data visualization"){
+        stage("Data Visusalizations"){
             steps{
                 sh 'python3 data_visualization.py'
             }
         }
-        stage("feature engineering"){
+        stage("Feature Engineering"){
             steps{
                 sh 'python3 feature_engineering.py'
             }
         }
-        stage("feature selection"){
+        stage("Feature Selection"){
             steps{
                 sh 'python3 feature_selection.py'
             }
         }
-        
-    }
-    post{
-        always{
-            emailext body:"summery", subject: "Pipeline Status", to: 'vamsi.muramreddy@cloudangles.com'
+        post{
+       
+        always {
+            archiveArtifacts artifacts: 'Covid-19_cleaned_dataset.csv', onlyIfSuccessful: true
         }
+            }
     }
+    
 }

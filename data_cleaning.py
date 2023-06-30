@@ -13,4 +13,5 @@ def data_cleaning():
     dataset = dataset[(dataset.RENAL_CHRONIC == 1) | (dataset.RENAL_CHRONIC == 2)]
     dataset = dataset[(dataset.TOBACCO == 1) | (dataset.TOBACCO == 2)]
     return dataset
+    data_cleaning()
 

@@ -8,6 +8,5 @@ def feature_engineering():
     dataset['PATIENT_STATUS'] = [2 if val == '9999-99-99' else 1 for val in dataset['DATE_DIED']]
     dataset.drop(['DATE_DIED'], axis = 1, inplace = True)
     print(dataset.head())
-
     return dataset
-
+feature_engineering()

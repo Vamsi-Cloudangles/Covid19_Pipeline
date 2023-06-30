@@ -13,3 +13,4 @@ def data_analysis():
     for col in dataset.columns:
         print(col, len(dataset[col].unique()))
     return dataset
+data_analysis()
