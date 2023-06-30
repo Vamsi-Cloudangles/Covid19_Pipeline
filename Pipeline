@@ -21,7 +21,7 @@ pipeline{
                 sh 'python3 data_cleaning.py'
             }
         }
-        stage("Data Visusalizations"){
+        stage("Data Visualization"){
             steps{
                 sh 'python3 datavisualization.py'
             }
@@ -31,17 +31,11 @@ pipeline{
                 sh 'python3 feature_engineering.py'
             }
         }
-        stage("Feature Selection"){
-            steps{
-                sh 'python3 feature_selection.py'
-            }
-        }
-        post{
+    }
+    post{
        
         always {
             archiveArtifacts artifacts: 'Covid-19_cleaned_dataset.csv', onlyIfSuccessful: true
         }
             }
-    }
-    
 }
